@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. DENJASSKA SEJAHTERA MANDIRI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'deep-green': {
+                            50: '#e6f0ea',
+                            100: '#b3d5c8',
+                            200: '#80baa6',
+                            300: '#4d9f84',
+                            400: '#1a8462',
+                            500: '#0a5c40',
+                            600: '#084a34',
+                            700: '#063828',
+                            800: '#04261c',
+                            900: '#021410',
+                            950: '#010a07',
+                        },
+                        'leaf-green': '#00C853',
+                        'sage-green': '#7CB342',
+                        'emerald-glow': '#00E676',
+                        'gold-accent': '#FFD700',
+                    },
+                    backgroundImage: {
+                        'mesh-gradient': 'radial-gradient(ellipse at 20% 20%, rgba(0,200,83,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(124,179,66,0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(0,230,118,0.04) 0%, transparent 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #0A5C40;
+            --primary-dark: #04261c;
+            --primary-light: #00C853;
+            --accent: #7CB342;
+            --gold: #FFD700;
+        }
+        
+        *, *::before, *::after { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #021410;
+            color: #e6f0ea;
+            overflow-x: hidden;
+            cursor: default;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { 
+            width: 6px; 
+        }
+        
+        ::-webkit-scrollbar-track { 
+            background: #021410; 
+        }
+        
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, #0A5C40, #00C853); 
+            border-radius: 3px; 
+        }
+        
+        ::-webkit-scrollbar-thumb:hover { 
+            background: #00E676; 
+        }
+
+        /* Glass Morphism */
+        .glass {
+            background: rgba(4, 38, 28, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(0, 200, 83, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(6, 56, 40, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 200, 83, 0.1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(0, 200, 83, 0.25);
+            background: rgba(6, 56, 40, 0.55);
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Animated Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00C853 0%, #7CB342 30%, #00E676 60%, #00C853 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0,200,83,0.08), transparent);
+            animation: shimmerMove 4s infinite;
+        }
+        
+        @keyframes shimmerMove {
+            0% { left: -100%; }
+            100% { left: 200%; }
+        }
+
+        /* Reveal Animations */
+        .reveal { 
+            opacity: 0; 
+            transform: translateY(40px); 
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
+        .reveal.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+        
+        .reveal-left { 
+            opacity: 0; 
+            transform: translateX(-60px); 
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
+        .reveal-left.visible { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
+        
+        .reveal-right { 
+            opacity: 0; 
+            transform: translateX(60px); 
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
+        .reveal-right.visible { 
+            opacity: 1; 
+            transform: translateX(0); 
+        }
+        
+        .reveal-scale { 
+            opacity: 0; 
+            transform: scale(0.85); 
+            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        
+        .reveal-scale.visible { 
+            opacity: 1; 
+            transform: scale(1); 
+        }
+
+        /* Stagger children */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stagger-children.visible > *:nth-child(1) { animation: staggerIn 0.6s 0.0s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        .stagger-children.visible > *:nth-child(2) { animation: staggerIn 0.6s 0.1s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        .stagger-children.visible > *:nth-child(3) { animation: staggerIn 0.6s 0.2s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        .stagger-children.visible > *:nth-child(4) { animation: staggerIn 0.6s 0.3s forwards cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        @keyframes staggerIn {
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00C853, #7CB342);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .nav-link:hover::after { 
+            width: 100%; 
+        }
+        
+        .nav-link:hover { 
+            color: #00E676; 
+        }
+
+        /* Submenu */
+        .submenu {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.97);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .group:hover .submenu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Hero floating shapes */
+        .float-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: floatDrift 20s ease-in-out infinite;
+        }
+        
+        @keyframes floatDrift {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -20px) scale(1.1); }
+            50% { transform: translate(-20px, 30px) scale(0.9); }
+            75% { transform: translate(20px, 20px) scale(1.05); }
+        }
+
+        /* Typewriter */
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #00C853;
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+        }
+        
+        @keyframes typing { 
+            from { width: 0 } 
+            to { width: 100% } 
+        }
+        
+        @keyframes blink { 
+            50% { border-color: transparent } 
+        }
+
+        /* Service Card 3D */
+        .service-card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .service-card-3d:hover {
+            transform: translateY(-8px) rotateX(2deg);
+        }
+
+        /* Form input focus glow */
+        .input-glow:focus {
+            box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2), 0 0 20px rgba(0, 200, 83, 0.1);
+            border-color: #00C853;
+        }
+
+        /* Mobile menu */
+        .mobile-panel {
+            transform: translateX(100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .mobile-panel.open { 
+            transform: translateX(0); 
+        }
+
+        /* Counter animation */
+        .counter-value {
+            display: inline-block;
+        }
+
+        /* Parallax */
+        .parallax-bg {
+            will-change: transform;
+        }
+
+        /* Button ripple */
+        .btn-ripple {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-ripple::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-ripple:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Decorative line */
+        .deco-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #00C853, #7CB342);
+            border-radius: 2px;
+        }
+
+        /* Image reveal */
+        .img-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .img-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #04261c;
+            transform: translateX(-101%);
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .img-reveal.revealed::after {
+            transform: translateX(101%);
+        }
+
+        /* Magnetic button effect */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Noise texture overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.015;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Custom cursor follower */
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 1px solid rgba(0, 200, 83, 0.4);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease-out, width 0.3s, height 0.3s;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower.hovering {
+            width: 50px;
+            height: 50px;
+            border-color: rgba(0, 200, 83, 0.7);
+            background: rgba(0, 200, 83, 0.05);
+        }
+
+        @media (pointer: coarse) {
+            .cursor-follower { display: none; }
+        }
+
+        /* Loading screen */
+        .loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #021410;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00C853, #7CB342, #00E676);
+            z-index: 9998;
+            transition: width 0.1s linear;
+        }
+
+        /* Accordion for mobile submenu */
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .accordion-content.open {
+            max-height: 500px;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Outfit, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.-inset-1{inset:-0.25rem}.inset-0{inset:0px}.-bottom-2{bottom:-0.5rem}.-bottom-4{bottom:-1rem}.-bottom-6{bottom:-1.5rem}.-left-2{left:-0.5rem}.-left-20{left:-5rem}.-left-6{left:-1.5rem}.-right-40{right:-10rem}.-right-6{right:-1.5rem}.-top-40{top:-10rem}.-top-6{top:-1.5rem}.bottom-0{bottom:0px}.bottom-20{bottom:5rem}.bottom-8{bottom:2rem}.left-0{left:0px}.left-1\/2{left:50%}.left-1\/3{left:33.333333%}.right-0{right:0px}.right-4{right:1rem}.right-8{right:2rem}.top-0{top:0px}.top-1\/2{top:50%}.top-full{top:100%}.-z-10{z-index:-10}.z-0{z-index:0}.z-10{z-index:10}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-14{margin-bottom:3.5rem}.mb-20{margin-bottom:5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-10{margin-top:2.5rem}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-11{height:2.75rem}.h-12{height:3rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-20{height:5rem}.h-4{height:1rem}.h-60{height:15rem}.h-64{height:16rem}.h-8{height:2rem}.h-\[1\.5px\]{height:1.5px}.h-\[300px\]{height:300px}.h-\[400px\]{height:400px}.h-\[500px\]{height:500px}.h-full{height:100%}.min-h-\[420px\]{min-height:420px}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-11{width:2.75rem}.w-12{width:3rem}.w-14{width:3.5rem}.w-16{width:4rem}.w-2{width:0.5rem}.w-48{width:12rem}.w-5{width:1.25rem}.w-64{width:16rem}.w-8{width:2rem}.w-\[1px\]{width:1px}.w-\[300px\]{width:300px}.w-\[400px\]{width:400px}.w-\[500px\]{width:500px}.w-full{width:100%}.min-w-0{min-width:0px}.min-w-\[240px\]{min-width:240px}.max-w-2xl{max-width:42rem}.max-w-4xl{max-width:56rem}.max-w-7xl{max-width:80rem}.max-w-\[220px\]{max-width:220px}.max-w-lg{max-width:32rem}.max-w-sm{max-width:24rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-20{--tw-translate-y:5rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-3{--tw-rotate:-3deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-6{--tw-rotate:6deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}@keyframes spin{to{transform:rotate(360deg)}}.animate-spin{animation:spin 1s linear infinite}.cursor-pointer{cursor:pointer}.resize-none{resize:none}.appearance-none{-webkit-appearance:none;appearance:none}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-10{gap:2.5rem}.gap-16{gap:4rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-5{gap:1.25rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.scroll-smooth{scroll-behavior:smooth}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-t-2{border-top-width:2px}.border-dashed{border-style:dashed}.border-deep-green-700{--tw-border-opacity:1;border-color:rgb(6 56 40 / var(--tw-border-opacity, 1))}.border-deep-green-700\/50{border-color:rgb(6 56 40 / 0.5)}.border-leaf-green{--tw-border-opacity:1;border-color:rgb(0 200 83 / var(--tw-border-opacity, 1))}.border-leaf-green\/10{border-color:rgb(0 200 83 / 0.1)}.border-leaf-green\/15{border-color:rgb(0 200 83 / 0.15)}.border-leaf-green\/20{border-color:rgb(0 200 83 / 0.2)}.border-white\/15{border-color:rgb(255 255 255 / 0.15)}.border-white\/5{border-color:rgb(255 255 255 / 0.05)}.bg-deep-green-700{--tw-bg-opacity:1;background-color:rgb(6 56 40 / var(--tw-bg-opacity, 1))}.bg-deep-green-700\/50{background-color:rgb(6 56 40 / 0.5)}.bg-deep-green-800{--tw-bg-opacity:1;background-color:rgb(4 38 28 / var(--tw-bg-opacity, 1))}.bg-deep-green-800\/50{background-color:rgb(4 38 28 / 0.5)}.bg-deep-green-900{--tw-bg-opacity:1;background-color:rgb(2 20 16 / var(--tw-bg-opacity, 1))}.bg-deep-green-900\/60{background-color:rgb(2 20 16 / 0.6)}.bg-deep-green-950\/95{background-color:rgb(1 10 7 / 0.95)}.bg-emerald-glow\/5{background-color:rgb(0 230 118 / 0.05)}.bg-leaf-green{--tw-bg-opacity:1;background-color:rgb(0 200 83 / var(--tw-bg-opacity, 1))}.bg-leaf-green\/10{background-color:rgb(0 200 83 / 0.1)}.bg-leaf-green\/20{background-color:rgb(0 200 83 / 0.2)}.bg-leaf-green\/5{background-color:rgb(0 200 83 / 0.05)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/10{background-color:rgb(255 255 255 / 0.1)}.bg-white\/5{background-color:rgb(255 255 255 / 0.05)}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.bg-gradient-to-br{background-image:linear-gradient(to bottom right, var(--tw-gradient-stops))}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.bg-gradient-to-t{background-image:linear-gradient(to top, var(--tw-gradient-stops))}.bg-mesh-gradient{background-image:radial-gradient(ellipse at 20% 20%, rgba(0,200,83,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(124,179,66,0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(0,230,118,0.04) 0%, transparent 70%)}.from-deep-green-500{--tw-gradient-from:#0a5c40 var(--tw-gradient-from-position);--tw-gradient-to:rgb(10 92 64 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-deep-green-700{--tw-gradient-from:#063828 var(--tw-gradient-from-position);--tw-gradient-to:rgb(6 56 40 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-deep-green-800{--tw-gradient-from:#04261c var(--tw-gradient-from-position);--tw-gradient-to:rgb(4 38 28 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-deep-green-950{--tw-gradient-from:#010a07 var(--tw-gradient-from-position);--tw-gradient-to:rgb(1 10 7 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-leaf-green{--tw-gradient-from:#00C853 var(--tw-gradient-from-position);--tw-gradient-to:rgb(0 200 83 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-deep-green-900\/60{--tw-gradient-to:rgb(2 20 16 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(2 20 16 / 0.6) var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-deep-green-950\/70{--tw-gradient-to:rgb(1 10 7 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(1 10 7 / 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to)}.via-deep-green-950\/95{--tw-gradient-to:rgb(1 10 7 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), rgb(1 10 7 / 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-deep-green-600{--tw-gradient-to:#084a34 var(--tw-gradient-to-position)}.to-deep-green-700{--tw-gradient-to:#063828 var(--tw-gradient-to-position)}.to-deep-green-800{--tw-gradient-to:#04261c var(--tw-gradient-to-position)}.to-deep-green-900{--tw-gradient-to:#021410 var(--tw-gradient-to-position)}.to-deep-green-950{--tw-gradient-to:#010a07 var(--tw-gradient-to-position)}.to-deep-green-950\/80{--tw-gradient-to:rgb(1 10 7 / 0.8) var(--tw-gradient-to-position)}.to-leaf-green{--tw-gradient-to:#00C853 var(--tw-gradient-to-position)}.to-sage-green{--tw-gradient-to:#7CB342 var(--tw-gradient-to-position)}.to-transparent{--tw-gradient-to:transparent var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-10{padding:2.5rem}.p-2{padding:0.5rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-28{padding-top:7rem;padding-bottom:7rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.py-32{padding-top:8rem;padding-bottom:8rem}.py-4{padding-top:1rem;padding-bottom:1rem}.pb-4{padding-bottom:1rem}.pb-8{padding-bottom:2rem}.pl-4{padding-left:1rem}.pt-20{padding-top:5rem}.pt-28{padding-top:7rem}.pt-3{padding-top:0.75rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.font-serif{font-family:Playfair Display, serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-5xl{font-size:3rem;line-height:1}.text-\[10px\]{font-size:10px}.text-\[8px\]{font-size:8px}.text-\[9px\]{font-size:9px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-\[1\.1\]{line-height:1.1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-deep-green-100{--tw-text-opacity:1;color:rgb(179 213 200 / var(--tw-text-opacity, 1))}.text-deep-green-200{--tw-text-opacity:1;color:rgb(128 186 166 / var(--tw-text-opacity, 1))}.text-deep-green-200\/60{color:rgb(128 186 166 / 0.6)}.text-deep-green-200\/70{color:rgb(128 186 166 / 0.7)}.text-deep-green-200\/80{color:rgb(128 186 166 / 0.8)}.text-deep-green-300{--tw-text-opacity:1;color:rgb(77 159 132 / var(--tw-text-opacity, 1))}.text-deep-green-300\/60{color:rgb(77 159 132 / 0.6)}.text-deep-green-300\/70{color:rgb(77 159 132 / 0.7)}.text-deep-green-400{--tw-text-opacity:1;color:rgb(26 132 98 / var(--tw-text-opacity, 1))}.text-deep-green-500{--tw-text-opacity:1;color:rgb(10 92 64 / var(--tw-text-opacity, 1))}.text-deep-green-600{--tw-text-opacity:1;color:rgb(8 74 52 / var(--tw-text-opacity, 1))}.text-deep-green-950{--tw-text-opacity:1;color:rgb(1 10 7 / var(--tw-text-opacity, 1))}.text-gold-accent{--tw-text-opacity:1;color:rgb(255 215 0 / var(--tw-text-opacity, 1))}.text-leaf-green{--tw-text-opacity:1;color:rgb(0 200 83 / var(--tw-text-opacity, 1))}.text-leaf-green\/50{color:rgb(0 200 83 / 0.5)}.text-leaf-green\/60{color:rgb(0 200 83 / 0.6)}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-white\/80{color:rgb(255 255 255 / 0.8)}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.placeholder-deep-green-500::placeholder{--tw-placeholder-opacity:1;color:rgb(10 92 64 / var(--tw-placeholder-opacity, 1))}.opacity-0{opacity:0}.opacity-10{opacity:0.1}.opacity-20{opacity:0.2}.opacity-5{opacity:0.05}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-black\/40{--tw-shadow-color:rgb(0 0 0 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.shadow-deep-green-900\/40{--tw-shadow-color:rgb(2 20 16 / 0.4);--tw-shadow:var(--tw-shadow-colored)}.shadow-leaf-green\/20{--tw-shadow-color:rgb(0 200 83 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.blur-lg{--tw-blur:blur(16px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-xl{--tw-backdrop-blur:blur(24px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-opacity{transition-property:opacity;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.hover\:rotate-0:hover{--tw-rotate:0deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:border-leaf-green\/30:hover{border-color:rgb(0 200 83 / 0.3)}.hover\:border-leaf-green\/50:hover{border-color:rgb(0 200 83 / 0.5)}.hover\:bg-deep-green-900\/80:hover{background-color:rgb(2 20 16 / 0.8)}.hover\:bg-leaf-green\/20:hover{background-color:rgb(0 200 83 / 0.2)}.hover\:bg-white\/5:hover{background-color:rgb(255 255 255 / 0.05)}.hover\:from-deep-green-400:hover{--tw-gradient-from:#1a8462 var(--tw-gradient-from-position);--tw-gradient-to:rgb(26 132 98 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.hover\:to-deep-green-500:hover{--tw-gradient-to:#0a5c40 var(--tw-gradient-to-position)}.hover\:text-leaf-green:hover{--tw-text-opacity:1;color:rgb(0 200 83 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:shadow-xl:hover{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.hover\:shadow-leaf-green\/20:hover{--tw-shadow-color:rgb(0 200 83 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.focus\:border-leaf-green:focus{--tw-border-opacity:1;border-color:rgb(0 200 83 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:-translate-y-0\.5{--tw-translate-y:-0.125rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:translate-x-1{--tw-translate-x:0.25rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:rotate-180{--tw-rotate:180deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.group:hover .group-hover\:animate-bounce{animation:bounce 1s infinite}.group:hover .group-hover\:border-leaf-green\/30{border-color:rgb(0 200 83 / 0.3)}.group:hover .group-hover\:border-leaf-green\/50{border-color:rgb(0 200 83 / 0.5)}.group\/item:hover .group-hover\/item\:bg-leaf-green\/20{background-color:rgb(0 200 83 / 0.2)}.group:hover .group-hover\:bg-leaf-green\/20{background-color:rgb(0 200 83 / 0.2)}.group:hover .group-hover\:text-leaf-green{--tw-text-opacity:1;color:rgb(0 200 83 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 640px){.sm\:block{display:block}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}}@media (min-width: 768px){.md\:col-span-2{grid-column:span 2 / span 2}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}}@media (min-width: 1024px){.lg\:block{display:block}.lg\:flex{display:flex}.lg\:hidden{display:none}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:p-10{padding:2.5rem}.lg\:p-12{padding:3rem}.lg\:p-16{padding:4rem}.lg\:px-8{padding-left:2rem;padding-right:2rem}.lg\:text-4xl{font-size:2.25rem;line-height:2.5rem}.lg\:text-5xl{font-size:3rem;line-height:1}.lg\:text-7xl{font-size:4.5rem;line-height:1}}</style></head>
+<body class="antialiased">
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+    
+    <!-- Cursor Follower -->
+    <div class="cursor-follower" id="cursorFollower" style="left: 1363px; top: 288px;"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress" style="width: 36.4039%;"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen hidden" id="loadingScreen">
+        <div class="text-center">
+            <div class="w-16 h-16 rounded-full border-2 border-deep-green-700 flex items-center justify-center mx-auto mb-6 relative">
+                <div class="w-12 h-12 rounded-full border-t-2 border-leaf-green animate-spin absolute"></div>
+                <i class="fas fa-leaf text-leaf-green text-lg"></i>
+            </div>
+            <p class="text-deep-green-300 text-sm tracking-widest uppercase font-light">Loading Experience</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-700 glass" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group magnetic-btn">
+                    <div class="relative">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-deep-green-500 to-deep-green-700 flex items-center justify-center border border-leaf-green/20 group-hover:border-leaf-green/50 transition-all duration-500">
+                            <i class="fas fa-shield-halved text-leaf-green text-lg"></i>
+                        </div>
+                        <div class="absolute -inset-1 rounded-xl bg-leaf-green/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-serif text-lg font-bold text-white tracking-wide leading-tight">DENJASSKA</span>
+                        <span class="block text-[9px] text-deep-green-300 tracking-[0.25em] uppercase">SEJAHTERA MANDIRI</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Home</a>
+                    <a href="#download" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Download Compro</a>
+                    <div class="group relative">
+                        <button class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 flex items-center gap-1.5 transition-colors">
+                            Layanan Service
+                            <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="submenu absolute top-full left-1/2 -translate-x-1/2 pt-3">
+                            <div class="glass rounded-2xl p-2 min-w-[240px] shadow-2xl shadow-black/40">
+                                <a href="#security" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-user-shield text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Security Guard</span>
+                                </a>
+                                <a href="#cleaning" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-broom text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Cleaning Service</span>
+                                </a>
+                                <a href="#driver" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-car text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Driver Service</span>
+                                </a>
+                                <a href="#admin" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-file-signature text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Administrasi Service</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#apply" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Input Lamaran</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Kontak</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:block">
+                    <a href="kemitraan.html" class="btn-ripple inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-deep-green-500 to-deep-green-600 text-white text-sm font-semibold hover:from-deep-green-400 hover:to-deep-green-500 transition-all duration-300 shadow-lg shadow-deep-green-900/40 border border-leaf-green/20">
+                        <span>Bermitra</span>
+                        <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="menuToggle" class="lg:hidden w-10 h-10 rounded-xl bg-deep-green-800/50 flex items-center justify-center border border-deep-green-700/50 hover:border-leaf-green/30 transition-all">
+                    <div class="relative w-5 h-4">
+                        <span class="absolute top-0 left-0 w-full h-[1.5px] bg-white rounded transition-all duration-300" id="bar1"></span>
+                        <span class="absolute top-1/2 left-0 w-full h-[1.5px] bg-white rounded -translate-y-1/2 transition-all duration-300" id="bar2"></span>
+                        <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded transition-all duration-300" id="bar3"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobilePanel" class="mobile-panel fixed inset-0 z-40 lg:hidden">
+        <div class="absolute inset-0 bg-deep-green-950/95 backdrop-blur-xl"></div>
+        <div class="relative h-full flex flex-col p-8 pt-28">
+            <div class="flex-1 flex flex-col gap-1">
+                <a href="#home" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Home</a>
+                <a href="#download" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Download Compro</a>
+                
+                <div class="border-b border-white/5">
+                    <button id="servicesAccordionBtn" class="w-full flex items-center justify-between text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors">
+                        <span>Layanan Service</span>
+                        <i class="fas fa-chevron-down text-sm transition-transform duration-300" id="servicesChevron"></i>
+                    </button>
+                    <div class="accordion-content" id="servicesAccordion">
+                        <div class="pb-4 pl-4 flex flex-col gap-2">
+                            <a href="#security" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-user-shield text-leaf-green text-sm"></i> Security Guard
+                            </a>
+                            <a href="#cleaning" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-broom text-leaf-green text-sm"></i> Cleaning Service
+                            </a>
+                            <a href="#driver" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-car text-leaf-green text-sm"></i> Driver Service
+                            </a>
+                            <a href="#admin" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-file-signature text-leaf-green text-sm"></i> Administrasi Service
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#apply" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Input Lamaran</a>
+                <a href="#contact" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Kontak Person</a>
+            </div>
+            <div class="pt-6">
+                <a href="kemitraan.html" class="block w-full py-4 rounded-2xl bg-gradient-to-r from-deep-green-500 to-leaf-green text-white text-center font-semibold text-lg shadow-lg shadow-leaf-green/20">
+                    Bermitra Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background Layers -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-deep-green-950 via-deep-green-900/60 to-deep-green-950 z-10"></div>
+            <div class="absolute inset-0 bg-mesh-gradient z-5"></div>
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&amp;q=80" alt="Office" class="w-full h-full object-cover opacity-20 parallax-bg" id="heroBg" style="transform: translateY(283.35px);">
+        </div>
+
+        <!-- Floating Shapes -->
+        <div class="float-shape w-[500px] h-[500px] bg-leaf-green/10 -top-40 -right-40" style="animation-delay: 0s;"></div>
+        <div class="float-shape w-[400px] h-[400px] bg-sage-green/8 bottom-20 -left-20" style="animation-delay: -5s;"></div>
+        <div class="float-shape w-[300px] h-[300px] bg-emerald-glow/5 top-1/2 left-1/3" style="animation-delay: -10s;"></div>
+
+        <!-- Particle Canvas -->
+        <canvas id="particleCanvas" width="1359" height="945"></canvas>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="reveal-left visible">
+                        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass border border-leaf-green/20">
+                            <span class="w-2 h-2 rounded-full bg-leaf-green animate-pulse"></span>
+                            <span class="text-xs font-medium text-deep-green-100 tracking-wider uppercase">Perusahaan Alih Daya Jasa Profesional</span>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal-left visible" style="transition-delay: 0.15s">
+                        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+                            PT. <span class="gradient-text">DENJASSKA</span><br>
+                            <span class="text-deep-green-100">SEJAHTERA MANDIRI</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="reveal-left visible" style="transition-delay: 0.3s">
+                        <p class="text-lg text-deep-green-200/80 leading-relaxed max-w-lg font-light">
+                            Mitra terpercaya Anda dalam solusi tenaga kerja profesional. Kami menyediakan layanan <strong class="text-white font-medium">Security Guard</strong>, <strong class="text-white font-medium">Cleaning Service</strong>, <strong class="text-white font-medium">Driver Service</strong>, dan <strong class="text-white font-medium">Administrasi Service</strong> dengan standar kualitas tertinggi untuk kebutuhan bisnis Anda.
+                        </p>
+                    </div>
+                    
+                    <div class="reveal-left flex flex-wrap gap-4 visible" style="transition-delay: 0.45s">
+                        <a href="#services" class="btn-ripple magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-sm hover:shadow-xl hover:shadow-leaf-green/20 transition-all duration-500">
+                            <span>Jelajahi Layanan</span>
+                            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="#download" class="magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-white/15 text-white font-medium text-sm hover:bg-white/5 hover:border-leaf-green/30 transition-all duration-500">
+                            <i class="fas fa-download text-leaf-green group-hover:animate-bounce"></i>
+                            <span>Company Profile</span>
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="reveal-left pt-8 grid grid-cols-3 gap-6 border-t border-white/5 visible" style="transition-delay: 0.6s">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="2">2</span>+</div>
+                            <div class="text-xs text-deep-green-400 mt-1">Tahun Pengalaman</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="1000">1000</span>+</div>
+                            <div class="text-xs text-deep-green-400 mt-1">Tenaga Kerja</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="98%">98%</span></div>
+                            <div class="text-xs text-deep-green-400 mt-1">Klien Puas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="hidden lg:block reveal-scale visible" style="transition-delay: 0.3s">
+                    <div class="relative">
+                        <!-- Main Card -->
+                        <div class="glass-card rounded-3xl p-8 relative z-10 shimmer">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center shadow-lg shadow-leaf-green/20">
+                                    <i class="fas fa-shield-halved text-deep-green-950 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold">Profesional &amp; Terpercaya</h3>
+                                    <p class="text-deep-green-400 text-sm">Since 2024</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Tenaga Kerja Bersertifikat</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Pelatihan Berkala</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Standar Kualitas ISO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-6 -right-6 glass-card rounded-2xl p-4 animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-deep-green-700 flex items-center justify-center">
+                                    <i class="fas fa-star text-gold-accent text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-lg">4.9</div>
+                                    <div class="text-deep-green-400 text-xs">Rating Klien</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -left-6 glass-card rounded-2xl p-4" style="animation: floatDrift 8s ease-in-out infinite;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-deep-green-700 flex items-center justify-center">
+                                    <i class="fas fa-users text-leaf-green text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-lg">1000+</div>
+                                    <div class="text-deep-green-400 text-xs">Tenaga Ahli</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-[10px] text-deep-green-400 tracking-widest uppercase">Scroll</span>
+                <div class="w-[1px] h-12 bg-gradient-to-b from-leaf-green to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Intro -->
+    <section id="about" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left visible">
+                    <div class="relative">
+                        <div class="img-reveal rounded-3xl overflow-hidden visible revealed" id="aboutImg">
+                            <img src="images/perusahaan.png" alt="Team" class="w-full h-[500px] object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6 max-w-[220px]">
+                            <div class="text-4xl font-bold gradient-text mb-1">2+</div>
+                            <div class="text-sm text-deep-green-300">Tahun Pengalaman Melayani Mitra Kerjasama </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-right space-y-6 visible">
+                    <div class="deco-line"></div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        Perusahaan Alih Daya Jasa <span class="gradient-text">Terdepan</span>
+                    </h2>
+                    <p class="text-deep-green-200/70 leading-relaxed text-lg font-light">
+                        PT. Denjasska Sejahtera Mandiri merupakan perusahaan yang bergerak di bidang pengadaan tenaga kerja outsourcing dengan komitmen tinggi terhadap kualitas dan profesionalisme. Kami memahami bahwa setiap bisnis memiliki kebutuhan unik, oleh karena itu kami menawarkan solusi yang disesuaikan untuk memastikan operasional klien berjalan optimal.
+                    </p>
+                    <p class="text-deep-green-200/70 leading-relaxed text-lg font-light">
+                        Dengan tim manajemen yang berpengalaman dan tenaga kerja yang telah melalui proses seleksi ketat serta pelatihan intensif, kami siap menjadi mitra strategis dalam mengelola sumber daya manusia Anda.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="glass-card rounded-2xl p-5 hover:border-leaf-green/30 transition-all">
+                            <i class="fas fa-medal text-leaf-green text-xl mb-3"></i>
+                            <div class="text-white font-semibold text-sm">Standar Kualitas</div>
+                            <div class="text-deep-green-400 text-xs mt-1">ISO Certified</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 hover:border-leaf-green/30 transition-all">
+                            <i class="fas fa-handshake text-leaf-green text-xl mb-3"></i>
+                            <div class="text-white font-semibold text-sm">Mitra Terpercaya</div>
+                            <div class="text-deep-green-400 text-xs mt-1">40+ Perusahaan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Compro -->
+    <section id="download" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&amp;q=80" alt="Business" class="w-full h-full object-cover opacity-10 parallax-bg" style="transform: translateY(283.35px);">
+            <div class="absolute inset-0 bg-gradient-to-r from-deep-green-950 via-deep-green-950/95 to-deep-green-950/80"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal glass-card rounded-3xl p-10 lg:p-16 border border-leaf-green/15 relative overflow-hidden visible">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-leaf-green/5 rounded-full blur-3xl"></div>
+                <div class="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="deco-line mb-6"></div>
+                        <h2 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-4">
+                            Company Profile <span class="gradient-text">2026</span>
+                        </h2>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light text-lg mb-6">
+                            Unduh profil perusahaan kami untuk mengetahui lebih detail tentang visi, misi, layanan, dan portofolio kami. Dokumen ini mencakup seluruh informasi yang Anda butuhkan untuk mempertimbangkan kemitraan bersama kami.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a
+href="assets/pdf/COMPRO PT. DSM 2026.pdf"
+download
+class="btn-ripple magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold hover:shadow-xl hover:shadow-leaf-green/20 transition-all">
+
+<i class="fas fa-file-pdf text-lg"></i>
+<span>Download PDF</span>
+
+</a>
+                           <a
+href="assets/pdf/COMPRO PT. DSM 2026.pdf"
+target="_blank"
+class="magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-white/15 text-white font-medium hover:bg-white/5 transition-all">
+
+<i class="fas fa-eye text-leaf-green"></i>
+<span>Preview Online</span>
+
+</a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <div class="w-48 h-60 rounded-xl bg-gradient-to-br from-deep-green-700 to-deep-green-900 border border-leaf-green/20 shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-file-pdf text-leaf-green text-4xl mb-3"></i>
+                                    <div class="text-white text-xs font-semibold">Company</div>
+                                    <div class="text-deep-green-400 text-[10px]">Profile 2026</div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-2 -left-2 w-48 h-60 rounded-xl bg-gradient-to-br from-deep-green-800 to-deep-green-950 border border-white/5 shadow-xl transform -rotate-3 -z-10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="text-center mb-20 reveal visible">
+                <div class="deco-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-4">
+                    Layanan <span class="gradient-text">Service</span> Kami
+                </h2>
+                <p class="text-deep-green-200/60 max-w-2xl mx-auto font-light text-lg">
+                    Solusi tenaga kerja Outsourcing yang Komprehensif untuk mendukung Operasional Bisnis Anda.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 stagger-children visible" id="serviceCards">
+                <!-- Security -->
+                <div id="security" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="images/satpam.jpeg" alt="Security" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-user-shield text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Security Guard</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan pengamanan profesional dengan tenaga security yang telah bersertifikat Gada Pratama, Gada Madya, dan Gada Utama. Dilengkapi dengan sistem manajemen patroli modern dan teknologi CCTV untuk memastikan keamanan maksimal.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Access Control</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Patroli 24 Jam</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Monitoring By Grup WA</span>
+							<span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Kontrol Rutin Anggota Oleh Korlap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cleaning -->
+                <div id="cleaning" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&amp;q=80" alt="Cleaning" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-broom text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Cleaning Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan kebersihan komprehensif untuk kantor, gedung, dan fasilitas industri. Tenaga cleaning service kami dilatih dengan standar SOP kebersihan tinggi menggunakan peralatan dan bahan pembersih yang ramah lingkungan.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Daily Cleaning</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Periodik Cleaning</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Kontrol Rutin Oleh SPV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Driver -->
+                <div id="driver" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&amp;q=80" alt="Driver" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-car text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Driver Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan supir profesional untuk kebutuhan perusahaan dan pribadi. Driver kami memiliki SIM yang sesuai, berpengalaman, dan memahami etika pelayanan prima untuk menjamin kenyamanan dan keselamatan perjalanan Anda.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Company Driver</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Personal Driver</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Shuttle Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin -->
+                <div id="admin" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&amp;q=80" alt="Admin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-file-signature text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Administrasi Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan tenaga administrasi yang handal untuk mendukung operasional kantor Anda. Staf admin kami terlatih dalam pengelolaan dokumen, data entry, customer service, dan berbagai tugas administrasi lainnya dengan ketelitian tinggi.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Data Entry</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Customer Service</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Document Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&amp;q=80" alt="Work" class="w-full h-full object-cover opacity-5 parallax-bg" style="transform: translateY(283.35px);">
+            <div class="absolute inset-0 bg-gradient-to-b from-deep-green-950 via-deep-green-950/98 to-deep-green-950"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal text-center mb-14 visible">
+                <div class="deco-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-4">
+                    Input <span class="gradient-text">Lamaran</span> Kerja
+                </h2>
+                <p class="text-deep-green-200/60 font-light text-lg">
+                    Bergabunglah bersama tim profesional kami. Isi formulir di bawah ini.
+                </p>
+            </div>
+
+            <div class="reveal-scale glass-card rounded-3xl p-8 lg:p-12 border border-leaf-green/10 visible">
+                <form
+id="applyForm"
+action="submit.php"
+method="POST"
+enctype="multipart/form-data"
+class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-briefcase text-leaf-green text-xs"></i>
+                                Bagian yang Dilamar
+                            </label>
+                            <div class="relative">
+                                <select name="posisi" required>
+                                    <option value="" class="bg-deep-green-900">Pilih Bagian</option>
+                                    <option value="security" class="bg-deep-green-900">Security Guard</option>
+                                    <option value="cleaning" class="bg-deep-green-900">Cleaning Service</option>
+                                    <option value="driver" class="bg-deep-green-900">Driver Service</option>
+                                    <option value="admin" class="bg-deep-green-900">Administrasi Service</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-deep-green-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-user text-leaf-green text-xs"></i>
+                                Nama Lengkap
+                            </label>
+                           <input
+type="text"
+name="nama"
+placeholder="Nama Lengkap"
+required>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-leaf-green text-xs"></i>
+                                Alamat
+                            </label>
+                            <textarea
+name="alamat"
+required></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-phone text-leaf-green text-xs"></i>
+                                No. HP / WhatsApp
+                            </label>
+                            <input
+type="text"
+name="telepon"
+placeholder="Nomor HP"
+required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-envelope text-leaf-green text-xs"></i>
+                                Email
+                            </label>
+                            <input
+type="email"
+name="email"
+placeholder="Email"
+required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-graduation-cap text-leaf-green text-xs"></i>
+                                Pendidikan Terakhir
+                            </label>
+                            <div class="relative">
+                                <select class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-leaf-green transition-all appearance-none cursor-pointer">
+                                    <option value="" class="bg-deep-green-900">Pilih Pendidikan</option>
+                                    <option value="SMP" class="bg-deep-green-900">MTs/SMP</option>
+                                    <option value="SMA" class="bg-deep-green-900">SMA/K</option>
+                                    <option value="d3" class="bg-deep-green-900">D3</option>
+                                    <option value="s1" class="bg-deep-green-900">S1</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-deep-green-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-briefcase text-leaf-green text-xs"></i>
+                                Pengalaman Bekerja
+                            </label>
+                            <input type="text" placeholder="Contoh: 2 tahun sebagai Security" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-file-upload text-leaf-green text-xs"></i>
+                                Upload CV
+                            </label>
+                            <div class="relative group">
+                                <input
+type="file"
+name="cv"
+accept=".pdf,.doc,.docx"
+required>
+                                <label for="cvUpload" class="flex items-center gap-4 w-full bg-deep-green-900/60 border border-deep-green-700/50 border-dashed rounded-xl px-4 py-4 cursor-pointer hover:border-leaf-green/50 hover:bg-deep-green-900/80 transition-all group-hover:border-leaf-green/30">
+                                    <div class="w-10 h-10 rounded-xl bg-deep-green-800 flex items-center justify-center group-hover:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-cloud-upload-alt text-leaf-green text-sm"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div id="fileLabel" class="text-sm text-deep-green-300 truncate">Klik untuk upload CV (PDF, DOC, DOCX)</div>
+                                        <div class="text-xs text-deep-green-500 mt-0.5">Maksimal 5MB</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-heart text-leaf-green text-xs"></i>
+                                Alasan Memilih Kami
+                            </label>
+                            <textarea rows="3" placeholder="Ceritakan mengapa Anda ingin bergabung dengan PT. Denjasska Sejahtera Mandiri..." class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-ripple magnetic-btn w-full py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-base hover:shadow-xl hover:shadow-leaf-green/20 transition-all duration-500 flex items-center justify-center gap-2 group" style="transform: translate(0px, 0px);">
+                        <span>Kirim Lamaran</span>
+                        <i class="fas fa-paper-plane transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-left visible">
+                    <div class="deco-line mb-6"></div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Kontak <span class="gradient-text">Person</span>
+                    </h2>
+                    <p class="text-deep-green-200/70 leading-relaxed font-light text-lg mb-10">
+                        Untuk informasi lebih lanjut mengenai layanan kami atau bermitra dengan PT. Denjasska Sejahtera Mandiri, silakan hubungi kami melalui kontak di bawah ini.
+                    </p>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-map-marker-alt text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Alamat Kantor Utama</h4>
+                                <p class="text-deep-green-300/70 text-sm leading-relaxed">Parahyangan Residence Jl. Letjen Mashudi, Kel. Kersanegara, Kec. cibeureum, Kota. Tasikmalaya, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-phone text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">No. Telepon / WhatsApp</h4>
+                                <p class="text-deep-green-300/70 text-sm">+62 81224356948</p>
+                                <p class="text-deep-green-300/70 text-sm">+62 82126584720</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-envelope text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Email</h4>
+                                <p class="text-deep-green-300/70 text-sm">denjasskasejahteramandiri.com</p>
+                                <p class="text-deep-green-300/70 text-sm">itsupportptdsm@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="mt-10">
+                        <h4 class="text-white font-semibold mb-4 text-sm">Ikuti Kami</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-instagram text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-tiktok text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-facebook-f text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-youtube text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right visible">
+                    <div class="glass-card rounded-3xl p-8 border border-leaf-green/10">
+                        <h3 class="text-xl font-bold text-white mb-6">Kirim Pesan</h3>
+                        <form class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Nama Anda" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                                <input type="email" placeholder="Email Anda" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                            </div>
+                            <input type="text" placeholder="Subjek" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                            <textarea rows="4" placeholder="Pesan Anda..." class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all resize-none"></textarea>
+                            <button type="submit" class="btn-ripple magnetic-btn w-full py-3.5 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-sm hover:shadow-xl hover:shadow-leaf-green/20 transition-all">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative pt-20 pb-8 border-t border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid md:grid-cols-4 gap-10 mb-14">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-deep-green-500 to-deep-green-700 flex items-center justify-center border border-leaf-green/20">
+                            <i class="fas fa-shield-halved text-leaf-green"></i>
+                        </div>
+                        <div>
+                            <span class="font-serif text-lg font-bold text-white tracking-wide">DENJASSKA</span>
+                            <span class="block text-[9px] text-deep-green-400 tracking-[0.2em] uppercase">Sejahtera Mandiri</span>
+                        </div>
+                    </div>
+                    <p class="text-deep-green-300/60 text-sm leading-relaxed max-w-sm font-light">
+                        Perusahaan alih daya jasa terdepan di Indonesia yang berkomitmen menyediakan solusi tenaga kerja profesional berkualitas tinggi untuk berbagai sektor industri.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wide">Layanan</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#security" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Security Guard</a></li>
+                        <li><a href="#cleaning" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Cleaning Service</a></li>
+                        <li><a href="#driver" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Driver Service</a></li>
+                        <li><a href="#admin" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Administrasi Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wide">Kontak</h4>
+                    <ul class="space-y-2.5">
+                        <li class="text-deep-green-300/60 text-sm flex items-start gap-2"><i class="fas fa-map-marker-alt text-leaf-green/60 mt-0.5 text-xs"></i>Parahyangan Residence A2-1, Jl. Letjen Mashudi, Kel. Kersanegara, Kec. Cibeureum, Kota. Tasikmalaya, Jawa barat</li>
+                        <li class="text-deep-green-300/60 text-sm flex items-center gap-2"><i class="fas fa-phone text-leaf-green/60 text-xs"></i>+62 82126584720</li>
+                        <li class="text-deep-green-300/60 text-sm flex items-center gap-2"><i class="fas fa-envelope text-leaf-green/60 text-xs"></i>denjasskasejahteramandiri@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-deep-green-500 text-xs font-light"> PT. Denjasska Sejahtera Mandiri. All rights reserved.</p>
+                <p class="text-deep-green-600 text-xs font-light">Designed with IT SUPPORT PT. DSM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 z-50 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="glass-card rounded-2xl px-6 py-4 border border-leaf-green/20 shadow-2xl flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-leaf-green/20 flex items-center justify-center">
+                <i class="fas fa-check text-leaf-green"></i>
+            </div>
+            <div>
+                <div class="text-white font-semibold text-sm">Berhasil!</div>
+                <div class="text-deep-green-300 text-xs" id="toastMsg">Lamaran Anda telah terkirim.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 800);
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        });
+
+        // Navigation scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.classList.add('glass');
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                nav.classList.remove('glass');
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobilePanel = document.getElementById('mobilePanel');
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+        let menuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobilePanel.classList.toggle('open', menuOpen);
+            if (menuOpen) {
+                bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobilePanel.classList.remove('open');
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
+            });
+        });
+
+        // Services Accordion
+        const servicesAccordionBtn = document.getElementById('servicesAccordionBtn');
+        const servicesAccordion = document.getElementById('servicesAccordion');
+        const servicesChevron = document.getElementById('servicesChevron');
+        let accordionOpen = false;
+
+        servicesAccordionBtn.addEventListener('click', () => {
+            accordionOpen = !accordionOpen;
+            servicesAccordion.classList.toggle('open', accordionOpen);
+            servicesChevron.style.transform = accordionOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Handle stagger children
+                    if (entry.target.classList.contains('stagger-children')) {
+                        entry.target.classList.add('visible');
+                    }
+                    
+                    // Handle image reveal
+                    if (entry.target.classList.contains('img-reveal')) {
+                        entry.target.classList.add('revealed');
+                    }
+                    
+                    // Handle counters
+                    if (entry.target.querySelectorAll('.counter-value').length > 0) {
+                        entry.target.querySelectorAll('.counter-value').forEach(counter => {
+                            const target = parseInt(counter.dataset.target);
+                            animateCounter(counter, target);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children, .img-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 40;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 40);
+        }
+
+        // File Upload
+        function updateFileName() {
+            const input = document.getElementById('cvUpload');
+            const label = document.getElementById('fileLabel');
+            if (input.files && input.files[0]) {
+                label.textContent = input.files[0].name;
+                label.classList.add('text-leaf-green');
+            }
+        }
+
+        // Form Submission
+        applyForm.addEventListener('submit', function(e) {
+
+    showToast('Lamaran berhasil dikirim');
+});
+            showToast('Lamaran Anda berhasil dikirim! Tim HR kami akan menghubungi Anda segera.');
+            e.target.reset();
+            document.getElementById('fileLabel').textContent = 'Klik untuk upload CV (PDF, DOC, DOCX)';
+            document.getElementById('fileLabel').classList.remove('text-leaf-green');
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.transform = 'translateY(20px)';
+                toast.style.opacity = '0';
+            }, 4000);
+        }
+
+        // Particle Canvas
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 200, 83, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 200, 83, ${0.08 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.parallax-bg').forEach(el => {
+                el.style.transform = `translateY(${scrolled * 0.15}px)`;
+            });
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursorFollower');
+        let cursorX = 0, cursorY = 0;
+        let currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function updateCursor() {
+            currentX += (cursorX - currentX) * 0.15;
+            currentY += (cursorY - currentY) * 0.15;
+            cursor.style.left = currentX + 'px';
+            cursor.style.top = currentY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Cursor hover effect
+        document.querySelectorAll('a, button, .magnetic-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+        });
+
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Denjasska Sejahtera Mandiri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'deep-green': {
+                            50: '#e6f0ea',
+                            100: '#b3d5c8',
+                            200: '#80baa6',
+                            300: '#4d9f84',
+                            400: '#1a8462',
+                            500: '#0a5c40',
+                            600: '#084a34',
+                            700: '#063828',
+                            800: '#04261c',
+                            900: '#021410',
+                            950: '#010a07',
+                        },
+                        'leaf-green': '#00C853',
+                        'sage-green': '#7CB342',
+                        'emerald-glow': '#00E676',
+                        'gold-accent': '#FFD700',
+                    },
+                    backgroundImage: {
+                        'mesh-gradient': 'radial-gradient(ellipse at 20% 20%, rgba(0,200,83,0.08) 0%, transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(124,179,66,0.06) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(0,230,118,0.04) 0%, transparent 70%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #0A5C40;
+            --primary-dark: #04261c;
+            --primary-light: #00C853;
+            --accent: #7CB342;
+            --gold: #FFD700;
+        }
+        
+        *, *::before, *::after { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        html { 
+            scroll-behavior: smooth; 
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: #021410;
+            color: #e6f0ea;
+            overflow-x: hidden;
+            cursor: default;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { 
+            width: 6px; 
+        }
+        
+        ::-webkit-scrollbar-track { 
+            background: #021410; 
+        }
+        
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(180deg, #0A5C40, #00C853); 
+            border-radius: 3px; 
+        }
+        
+        ::-webkit-scrollbar-thumb:hover { 
+            background: #00E676; 
+        }
+
+        /* Glass Morphism */
+        .glass {
+            background: rgba(4, 38, 28, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(0, 200, 83, 0.08);
+        }
+        
+        .glass-card {
+            background: rgba(6, 56, 40, 0.4);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 200, 83, 0.1);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(0, 200, 83, 0.25);
+            background: rgba(6, 56, 40, 0.55);
+        }
+
+        /* Particle Canvas */
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* Animated Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #00C853 0%, #7CB342 30%, #00E676 60%, #00C853 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+			<body class="antialiased">
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+    
+    <!-- Cursor Follower -->
+    <div class="cursor-follower" id="cursorFollower" style="left: 1350px; top: 626px;"></div>
+    
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress" style="width: 36.4039%;"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen hidden" id="loadingScreen">
+        <div class="text-center">
+            <div class="w-16 h-16 rounded-full border-2 border-deep-green-700 flex items-center justify-center mx-auto mb-6 relative">
+                <div class="w-12 h-12 rounded-full border-t-2 border-leaf-green animate-spin absolute"></div>
+                <i class="fas fa-leaf text-leaf-green text-lg"></i>
+            </div>
+            <p class="text-deep-green-300 text-sm tracking-widest uppercase font-light">Loading Experience</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-700 glass" style="box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 30px;">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#home" class="flex items-center gap-3 group magnetic-btn">
+                    <div class="relative">
+                        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-deep-green-500 to-deep-green-700 flex items-center justify-center border border-leaf-green/20 group-hover:border-leaf-green/50 transition-all duration-500">
+                            <i class="fas fa-shield-halved text-leaf-green text-lg"></i>
+                        </div>
+                        <div class="absolute -inset-1 rounded-xl bg-leaf-green/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-serif text-lg font-bold text-white tracking-wide leading-tight">DENJASSKA</span>
+                        <span class="block text-[9px] text-deep-green-300 tracking-[0.25em] uppercase">Sejahtera Mandiri</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex items-center gap-1">
+                    <a href="#home" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Home</a>
+                    <a href="#download" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Download Compro</a>
+                    <div class="group relative">
+                        <button class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 flex items-center gap-1.5 transition-colors">
+                            Layanan Service
+                            <i class="fas fa-chevron-down text-[10px] transition-transform duration-300 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="submenu absolute top-full left-1/2 -translate-x-1/2 pt-3">
+                            <div class="glass rounded-2xl p-2 min-w-[240px] shadow-2xl shadow-black/40">
+                                <a href="#security" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-user-shield text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Security Guard</span>
+                                </a>
+                                <a href="#cleaning" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-broom text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Cleaning Service</span>
+                                </a>
+                                <a href="#driver" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-car text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Driver Service</span>
+                                </a>
+                                <a href="#admin" class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-deep-green-200 hover:text-white hover:bg-white/5 transition-all group/item">
+                                    <div class="w-8 h-8 rounded-lg bg-deep-green-700/50 flex items-center justify-center group-hover/item:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-file-signature text-leaf-green text-xs"></i>
+                                    </div>
+                                    <span>Administrasi Service</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#apply" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Input Lamaran</a>
+                    <a href="#contact" class="nav-link text-sm font-medium text-deep-green-200 hover:text-white px-4 py-2 transition-colors">Kontak</a>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:block">
+                    <a href="kemitraan.html" class="btn-ripple inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gradient-to-r from-deep-green-500 to-deep-green-600 text-white text-sm font-semibold hover:from-deep-green-400 hover:to-deep-green-500 transition-all duration-300 shadow-lg shadow-deep-green-900/40 border border-leaf-green/20">
+                        <span>Bermitra</span>
+                        <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger -->
+                <button id="menuToggle" class="lg:hidden w-10 h-10 rounded-xl bg-deep-green-800/50 flex items-center justify-center border border-deep-green-700/50 hover:border-leaf-green/30 transition-all">
+                    <div class="relative w-5 h-4">
+                        <span class="absolute top-0 left-0 w-full h-[1.5px] bg-white rounded transition-all duration-300" id="bar1"></span>
+                        <span class="absolute top-1/2 left-0 w-full h-[1.5px] bg-white rounded -translate-y-1/2 transition-all duration-300" id="bar2"></span>
+                        <span class="absolute bottom-0 left-0 w-full h-[1.5px] bg-white rounded transition-all duration-300" id="bar3"></span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Panel -->
+    <div id="mobilePanel" class="mobile-panel fixed inset-0 z-40 lg:hidden">
+        <div class="absolute inset-0 bg-deep-green-950/95 backdrop-blur-xl"></div>
+        <div class="relative h-full flex flex-col p-8 pt-28">
+            <div class="flex-1 flex flex-col gap-1">
+                <a href="#home" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Home</a>
+                <a href="#download" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Download Compro</a>
+                
+                <div class="border-b border-white/5">
+                    <button id="servicesAccordionBtn" class="w-full flex items-center justify-between text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors">
+                        <span>Layanan Service</span>
+                        <i class="fas fa-chevron-down text-sm transition-transform duration-300" id="servicesChevron"></i>
+                    </button>
+                    <div class="accordion-content" id="servicesAccordion">
+                        <div class="pb-4 pl-4 flex flex-col gap-2">
+                            <a href="#security" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-user-shield text-leaf-green text-sm"></i> Security Guard
+                            </a>
+                            <a href="#cleaning" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-broom text-leaf-green text-sm"></i> Cleaning Service
+                            </a>
+                            <a href="#driver" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-car text-leaf-green text-sm"></i> Driver Service
+                            </a>
+                            <a href="#admin" class="mobile-link text-lg text-deep-green-300 hover:text-leaf-green py-2 transition-colors flex items-center gap-3">
+                                <i class="fas fa-file-signature text-leaf-green text-sm"></i> Administrasi Service
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#apply" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Input Lamaran</a>
+                <a href="#contact" class="mobile-link text-2xl font-light text-white/80 hover:text-leaf-green py-3 transition-colors border-b border-white/5">Kontak Person</a>
+            </div>
+            <div class="pt-6">
+                <a href="kemitraan.html" class="block w-full py-4 rounded-2xl bg-gradient-to-r from-deep-green-500 to-leaf-green text-white text-center font-semibold text-lg shadow-lg shadow-leaf-green/20">
+                    Bermitra Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Background Layers -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-deep-green-950 via-deep-green-900/60 to-deep-green-950 z-10"></div>
+            <div class="absolute inset-0 bg-mesh-gradient z-5"></div>
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&amp;q=80" alt="Office" class="w-full h-full object-cover opacity-20 parallax-bg" id="heroBg" style="transform: translateY(283.35px);">
+        </div>
+
+        <!-- Floating Shapes -->
+        <div class="float-shape w-[500px] h-[500px] bg-leaf-green/10 -top-40 -right-40" style="animation-delay: 0s;"></div>
+        <div class="float-shape w-[400px] h-[400px] bg-sage-green/8 bottom-20 -left-20" style="animation-delay: -5s;"></div>
+        <div class="float-shape w-[300px] h-[300px] bg-emerald-glow/5 top-1/2 left-1/3" style="animation-delay: -10s;"></div>
+
+        <!-- Particle Canvas -->
+        <canvas id="particleCanvas" width="1359" height="945"></canvas>
+
+        <!-- Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="reveal-left visible">
+                        <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-full glass border border-leaf-green/20">
+                            <span class="w-2 h-2 rounded-full bg-leaf-green animate-pulse"></span>
+                            <span class="text-xs font-medium text-deep-green-100 tracking-wider uppercase">Perusahaan Alih Daya Jasa Profesional</span>
+                        </div>
+                    </div>
+                    
+                    <div class="reveal-left visible" style="transition-delay: 0.15s">
+                        <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight">
+                            PT. <span class="gradient-text">DENJASSKA</span><br>
+                            <span class="text-deep-green-100">SEJAHTERA MANDIRI</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="reveal-left visible" style="transition-delay: 0.3s">
+                        <p class="text-lg text-deep-green-200/80 leading-relaxed max-w-lg font-light">
+                            Mitra terpercaya Anda dalam solusi tenaga kerja profesional. Kami menyediakan layanan <strong class="text-white font-medium">Security Guard</strong>, <strong class="text-white font-medium">Cleaning Service</strong>, <strong class="text-white font-medium">Driver Service</strong>, dan <strong class="text-white font-medium">Administrasi Service</strong> dengan standar kualitas tertinggi untuk kebutuhan bisnis Anda.
+                        </p>
+                    </div>
+                    
+                    <div class="reveal-left flex flex-wrap gap-4 visible" style="transition-delay: 0.45s">
+                        <a href="#services" class="btn-ripple magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-sm hover:shadow-xl hover:shadow-leaf-green/20 transition-all duration-500">
+                            <span>Jelajahi Layanan</span>
+                            <i class="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1"></i>
+                        </a>
+                        <a href="#download" class="magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-white/15 text-white font-medium text-sm hover:bg-white/5 hover:border-leaf-green/30 transition-all duration-500">
+                            <i class="fas fa-download text-leaf-green group-hover:animate-bounce"></i>
+                            <span>Company Profile</span>
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="reveal-left pt-8 grid grid-cols-3 gap-6 border-t border-white/5 visible" style="transition-delay: 0.6s">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="2">2</span>+</div>
+                            <div class="text-xs text-deep-green-400 mt-1">Tahun Pengalaman</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="1000">1000</span>+</div>
+                            <div class="text-xs text-deep-green-400 mt-1">Tenaga Kerja</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-bold text-white"><span class="counter-value" data-target="98%">98%</span></div>
+                            <div class="text-xs text-deep-green-400 mt-1">Klien Puas</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Visual -->
+                <div class="hidden lg:block reveal-scale visible" style="transition-delay: 0.3s">
+                    <div class="relative">
+                        <!-- Main Card -->
+                        <div class="glass-card rounded-3xl p-8 relative z-10 shimmer">
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center shadow-lg shadow-leaf-green/20">
+                                    <i class="fas fa-shield-halved text-deep-green-950 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-white font-semibold">Profesional &amp; Terpercaya</h3>
+                                    <p class="text-deep-green-400 text-sm">Since 2024</p>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Tenaga Kerja Bersertifikat</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Pelatihan Berkala</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 rounded-xl bg-white/5">
+                                    <div class="w-2 h-2 rounded-full bg-leaf-green"></div>
+                                    <span class="text-sm text-deep-green-200">Standar Kualitas ISO</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-6 -right-6 glass-card rounded-2xl p-4 animate-bounce" style="animation-duration: 3s;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-deep-green-700 flex items-center justify-center">
+                                    <i class="fas fa-star text-gold-accent text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-lg">4.9</div>
+                                    <div class="text-deep-green-400 text-xs">Rating Klien</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -left-6 glass-card rounded-2xl p-4" style="animation: floatDrift 8s ease-in-out infinite;">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-deep-green-700 flex items-center justify-center">
+                                    <i class="fas fa-users text-leaf-green text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="text-white font-bold text-lg">1000+</div>
+                                    <div class="text-deep-green-400 text-xs">Tenaga Ahli</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-[10px] text-deep-green-400 tracking-widest uppercase">Scroll</span>
+                <div class="w-[1px] h-12 bg-gradient-to-b from-leaf-green to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Intro -->
+    <section id="about" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="reveal-left visible">
+                    <div class="relative">
+                        <div class="img-reveal rounded-3xl overflow-hidden visible revealed" id="aboutImg">
+                            <img src="images/perusahaan.png" alt="Team" class="w-full h-[500px] object-cover hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 glass-card rounded-2xl p-6 max-w-[220px]">
+                            <div class="text-4xl font-bold gradient-text mb-1">2+</div>
+                            <div class="text-sm text-deep-green-300">Tahun Pengalaman Melayani Mitra Kerjasama </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-right space-y-6 visible">
+                    <div class="deco-line"></div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white leading-tight">
+                        Perusahaan Alih Daya Jasa <span class="gradient-text">Terdepan</span>
+                    </h2>
+                    <p class="text-deep-green-200/70 leading-relaxed text-lg font-light">
+                        PT. Denjasska Sejahtera Mandiri merupakan perusahaan yang bergerak di bidang pengadaan tenaga kerja outsourcing dengan komitmen tinggi terhadap kualitas dan profesionalisme. Kami memahami bahwa setiap bisnis memiliki kebutuhan unik, oleh karena itu kami menawarkan solusi yang disesuaikan untuk memastikan operasional klien berjalan optimal.
+                    </p>
+                    <p class="text-deep-green-200/70 leading-relaxed text-lg font-light">
+                        Dengan tim manajemen yang berpengalaman dan tenaga kerja yang telah melalui proses seleksi ketat serta pelatihan intensif, kami siap menjadi mitra strategis dalam mengelola sumber daya manusia Anda.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="glass-card rounded-2xl p-5 hover:border-leaf-green/30 transition-all">
+                            <i class="fas fa-medal text-leaf-green text-xl mb-3"></i>
+                            <div class="text-white font-semibold text-sm">Standar Kualitas</div>
+                            <div class="text-deep-green-400 text-xs mt-1">ISO Certified</div>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 hover:border-leaf-green/30 transition-all">
+                            <i class="fas fa-handshake text-leaf-green text-xl mb-3"></i>
+                            <div class="text-white font-semibold text-sm">Mitra Terpercaya</div>
+                            <div class="text-deep-green-400 text-xs mt-1">40+ Perusahaan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Compro -->
+    <section id="download" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&amp;q=80" alt="Business" class="w-full h-full object-cover opacity-10 parallax-bg" style="transform: translateY(283.35px);">
+            <div class="absolute inset-0 bg-gradient-to-r from-deep-green-950 via-deep-green-950/95 to-deep-green-950/80"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal glass-card rounded-3xl p-10 lg:p-16 border border-leaf-green/15 relative overflow-hidden visible">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-leaf-green/5 rounded-full blur-3xl"></div>
+                <div class="relative z-10 grid lg:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="deco-line mb-6"></div>
+                        <h2 class="font-serif text-3xl lg:text-4xl font-bold text-white mb-4">
+                            Company Profile <span class="gradient-text">2026</span>
+                        </h2>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light text-lg mb-6">
+                            Unduh profil perusahaan kami untuk mengetahui lebih detail tentang visi, misi, layanan, dan portofolio kami. Dokumen ini mencakup seluruh informasi yang Anda butuhkan untuk mempertimbangkan kemitraan bersama kami.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a
+href="assets/pdf/COMPRO PT. DSM 2026.pdf"
+download
+class="btn-ripple magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold hover:shadow-xl hover:shadow-leaf-green/20 transition-all">
+
+<i class="fas fa-file-pdf text-lg"></i>
+<span>Download PDF</span>
+
+</a>
+                           <a
+href="assets/pdf/COMPRO PT. DSM 2026.pdf"
+target="_blank"
+class="magnetic-btn group inline-flex items-center gap-3 px-8 py-4 rounded-2xl border border-white/15 text-white font-medium hover:bg-white/5 transition-all">
+
+<i class="fas fa-eye text-leaf-green"></i>
+<span>Preview Online</span>
+
+</a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <div class="w-48 h-60 rounded-xl bg-gradient-to-br from-deep-green-700 to-deep-green-900 border border-leaf-green/20 shadow-2xl transform rotate-6 hover:rotate-0 transition-transform duration-500 flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-file-pdf text-leaf-green text-4xl mb-3"></i>
+                                    <div class="text-white text-xs font-semibold">Company</div>
+                                    <div class="text-deep-green-400 text-[10px]">Profile 2026</div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-2 -left-2 w-48 h-60 rounded-xl bg-gradient-to-br from-deep-green-800 to-deep-green-950 border border-white/5 shadow-xl transform -rotate-3 -z-10"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="text-center mb-20 reveal visible">
+                <div class="deco-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-4">
+                    Layanan <span class="gradient-text">Service</span> Kami
+                </h2>
+                <p class="text-deep-green-200/60 max-w-2xl mx-auto font-light text-lg">
+                    Solusi tenaga kerja Outsourcing yang Komprehensif untuk mendukung Operasional Bisnis Anda.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 stagger-children visible" id="serviceCards">
+                <!-- Security -->
+                <div id="security" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="images/satpam.jpeg" alt="Security" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-user-shield text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Security Guard</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan pengamanan profesional dengan tenaga security yang telah bersertifikat Gada Pratama, Gada Madya, dan Gada Utama. Dilengkapi dengan sistem manajemen patroli modern dan teknologi CCTV untuk memastikan keamanan maksimal.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Access Control</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Patroli 24 Jam</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Monitoring By Grup WA</span>
+							<span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Kontrol Rutin Anggota Oleh Korlap</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cleaning -->
+                <div id="cleaning" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&amp;q=80" alt="Cleaning" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-broom text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Cleaning Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan kebersihan komprehensif untuk kantor, gedung, dan fasilitas industri. Tenaga cleaning service kami dilatih dengan standar SOP kebersihan tinggi menggunakan peralatan dan bahan pembersih yang ramah lingkungan.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Daily Cleaning</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Periodik Cleaning</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Kontrol Rutin Oleh SPV</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Driver -->
+                <div id="driver" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&amp;q=80" alt="Driver" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-car text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Driver Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan supir profesional untuk kebutuhan perusahaan dan pribadi. Driver kami memiliki SIM yang sesuai, berpengalaman, dan memahami etika pelayanan prima untuk menjamin kenyamanan dan keselamatan perjalanan Anda.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Company Driver</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Personal Driver</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Shuttle Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin -->
+                <div id="admin" class="service-card-3d group relative rounded-3xl overflow-hidden">
+                    <div class="absolute inset-0">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&amp;q=80" alt="Admin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 via-deep-green-950/70 to-transparent"></div>
+                    </div>
+                    <div class="relative p-8 lg:p-10 min-h-[420px] flex flex-col justify-end">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-leaf-green to-sage-green flex items-center justify-center mb-5 shadow-lg shadow-leaf-green/20 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-file-signature text-deep-green-950 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Administrasi Service</h3>
+                        <p class="text-deep-green-200/70 leading-relaxed font-light mb-5">
+                            Layanan tenaga administrasi yang handal untuk mendukung operasional kantor Anda. Staf admin kami terlatih dalam pengelolaan dokumen, data entry, customer service, dan berbagai tugas administrasi lainnya dengan ketelitian tinggi.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Data Entry</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Customer Service</span>
+                            <span class="px-3 py-1 rounded-full bg-white/10 text-deep-green-200 text-xs border border-white/5">Document Control</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form -->
+    <section id="apply" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=1920&amp;q=80" alt="Work" class="w-full h-full object-cover opacity-5 parallax-bg" style="transform: translateY(283.35px);">
+            <div class="absolute inset-0 bg-gradient-to-b from-deep-green-950 via-deep-green-950/98 to-deep-green-950"></div>
+        </div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 relative">
+            <div class="reveal text-center mb-14 visible">
+                <div class="deco-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-4">
+                    Input <span class="gradient-text">Lamaran</span> Kerja
+                </h2>
+                <p class="text-deep-green-200/60 font-light text-lg">
+                    Bergabunglah bersama tim profesional kami. Isi formulir di bawah ini.
+                </p>
+            </div>
+
+            <div class="reveal-scale glass-card rounded-3xl p-8 lg:p-12 border border-leaf-green/10 visible">
+                <form
+id="applyForm"
+action="submit.php"
+method="POST"
+enctype="multipart/form-data"
+class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-briefcase text-leaf-green text-xs"></i>
+                                Bagian yang Dilamar
+                            </label>
+                            <div class="relative">
+                                <select name="posisi" required>
+                                    <option value="" class="bg-deep-green-900">Pilih Bagian</option>
+                                    <option value="security" class="bg-deep-green-900">Security Guard</option>
+                                    <option value="cleaning" class="bg-deep-green-900">Cleaning Service</option>
+                                    <option value="driver" class="bg-deep-green-900">Driver Service</option>
+                                    <option value="admin" class="bg-deep-green-900">Administrasi Service</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-deep-green-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-user text-leaf-green text-xs"></i>
+                                Nama Lengkap
+                            </label>
+                           <input
+type="text"
+name="nama"
+placeholder="Nama Lengkap"
+required>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-leaf-green text-xs"></i>
+                                Alamat
+                            </label>
+                            <textarea
+name="alamat"
+required></textarea>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-phone text-leaf-green text-xs"></i>
+                                No. HP / WhatsApp
+                            </label>
+                            <input
+type="text"
+name="telepon"
+placeholder="Nomor HP"
+required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-envelope text-leaf-green text-xs"></i>
+                                Email
+                            </label>
+                            <input
+type="email"
+name="email"
+placeholder="Email"
+required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-graduation-cap text-leaf-green text-xs"></i>
+                                Pendidikan Terakhir
+                            </label>
+                            <div class="relative">
+                                <select class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-leaf-green transition-all appearance-none cursor-pointer">
+                                    <option value="" class="bg-deep-green-900">Pilih Pendidikan</option>
+                                    <option value="SMP" class="bg-deep-green-900">MTs/SMP</option>
+                                    <option value="SMA" class="bg-deep-green-900">SMA/K</option>
+                                    <option value="d3" class="bg-deep-green-900">D3</option>
+                                    <option value="s1" class="bg-deep-green-900">S1</option>
+                                </select>
+                                <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-deep-green-400 text-xs pointer-events-none"></i>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-briefcase text-leaf-green text-xs"></i>
+                                Pengalaman Bekerja
+                            </label>
+                            <input type="text" placeholder="Contoh: 2 tahun sebagai Security" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-file-upload text-leaf-green text-xs"></i>
+                                Upload CV
+                            </label>
+                            <div class="relative group">
+                                <input
+type="file"
+name="cv"
+accept=".pdf,.doc,.docx"
+required>
+                                <label for="cvUpload" class="flex items-center gap-4 w-full bg-deep-green-900/60 border border-deep-green-700/50 border-dashed rounded-xl px-4 py-4 cursor-pointer hover:border-leaf-green/50 hover:bg-deep-green-900/80 transition-all group-hover:border-leaf-green/30">
+                                    <div class="w-10 h-10 rounded-xl bg-deep-green-800 flex items-center justify-center group-hover:bg-leaf-green/20 transition-colors">
+                                        <i class="fas fa-cloud-upload-alt text-leaf-green text-sm"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div id="fileLabel" class="text-sm text-deep-green-300 truncate">Klik untuk upload CV (PDF, DOC, DOCX)</div>
+                                        <div class="text-xs text-deep-green-500 mt-0.5">Maksimal 5MB</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-sm font-medium text-deep-green-200 flex items-center gap-2">
+                                <i class="fas fa-heart text-leaf-green text-xs"></i>
+                                Alasan Memilih Kami
+                            </label>
+                            <textarea rows="3" placeholder="Ceritakan mengapa Anda ingin bergabung dengan PT. Denjasska Sejahtera Mandiri..." class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3.5 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all resize-none"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-ripple magnetic-btn w-full py-4 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-base hover:shadow-xl hover:shadow-leaf-green/20 transition-all duration-500 flex items-center justify-center gap-2 group" style="transform: translate(0px, 0px);">
+                        <span>Kirim Lamaran</span>
+                        <i class="fas fa-paper-plane transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-28 overflow-hidden">
+        <div class="absolute inset-0 bg-mesh-gradient"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="reveal-left visible">
+                    <div class="deco-line mb-6"></div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-white mb-6">
+                        Kontak <span class="gradient-text">Person</span>
+                    </h2>
+                    <p class="text-deep-green-200/70 leading-relaxed font-light text-lg mb-10">
+                        Untuk informasi lebih lanjut mengenai layanan kami atau bermitra dengan PT. Denjasska Sejahtera Mandiri, silakan hubungi kami melalui kontak di bawah ini.
+                    </p>
+                    <div class="space-y-5">
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-map-marker-alt text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Alamat Kantor Utama</h4>
+                                <p class="text-deep-green-300/70 text-sm leading-relaxed">Parahyangan Residence Jl. Letjen Mashudi, Kel. Kersanegara, Kec. cibeureum, Kota. Tasikmalaya, Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-phone text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">No. Telepon / WhatsApp</h4>
+                                <p class="text-deep-green-300/70 text-sm">+62 81224356948</p>
+                                <p class="text-deep-green-300/70 text-sm">+62 82126584720</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-5 group">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-deep-green-700 to-deep-green-800 border border-leaf-green/10 flex items-center justify-center shrink-0 group-hover:border-leaf-green/30 transition-all">
+                                <i class="fas fa-envelope text-leaf-green"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-1">Email</h4>
+                                <p class="text-deep-green-300/70 text-sm">denjasskasejahteramandiri.com</p>
+                                <p class="text-deep-green-300/70 text-sm">itsupportptdsm@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social -->
+                    <div class="mt-10">
+                        <h4 class="text-white font-semibold mb-4 text-sm">Ikuti Kami</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-instagram text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-tiktok text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-facebook-f text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                            <a href="#" class="w-11 h-11 rounded-xl bg-deep-green-800/50 border border-deep-green-700/50 flex items-center justify-center hover:bg-leaf-green/20 hover:border-leaf-green/30 transition-all group">
+                                <i class="fab fa-youtube text-deep-green-400 group-hover:text-leaf-green transition-colors"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal-right visible">
+                    <div class="glass-card rounded-3xl p-8 border border-leaf-green/10">
+                        <h3 class="text-xl font-bold text-white mb-6">Kirim Pesan</h3>
+                        <form class="space-y-4">
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <input type="text" placeholder="Nama Anda" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                                <input type="email" placeholder="Email Anda" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                            </div>
+                            <input type="text" placeholder="Subjek" class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all">
+                            <textarea rows="4" placeholder="Pesan Anda..." class="input-glow w-full bg-deep-green-900/60 border border-deep-green-700/50 rounded-xl px-4 py-3 text-white text-sm placeholder-deep-green-500 focus:outline-none focus:border-leaf-green transition-all resize-none"></textarea>
+                            <button type="submit" class="btn-ripple magnetic-btn w-full py-3.5 rounded-2xl bg-gradient-to-r from-leaf-green to-sage-green text-deep-green-950 font-bold text-sm hover:shadow-xl hover:shadow-leaf-green/20 transition-all">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="relative pt-20 pb-8 border-t border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-t from-deep-green-950 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="grid md:grid-cols-4 gap-10 mb-14">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-deep-green-500 to-deep-green-700 flex items-center justify-center border border-leaf-green/20">
+                            <i class="fas fa-shield-halved text-leaf-green"></i>
+                        </div>
+                        <div>
+                            <span class="font-serif text-lg font-bold text-white tracking-wide">DENJASSKA</span>
+                            <span class="block text-[9px] text-deep-green-400 tracking-[0.2em] uppercase">Sejahtera Mandiri</span>
+                        </div>
+                    </div>
+                    <p class="text-deep-green-300/60 text-sm leading-relaxed max-w-sm font-light">
+                        Perusahaan alih daya jasa terdepan di Indonesia yang berkomitmen menyediakan solusi tenaga kerja profesional berkualitas tinggi untuk berbagai sektor industri.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wide">Layanan</h4>
+                    <ul class="space-y-2.5">
+                        <li><a href="#security" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Security Guard</a></li>
+                        <li><a href="#cleaning" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Cleaning Service</a></li>
+                        <li><a href="#driver" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Driver Service</a></li>
+                        <li><a href="#admin" class="text-deep-green-300/60 text-sm hover:text-leaf-green transition-colors flex items-center gap-2"><i class="fas fa-chevron-right text-[8px] text-leaf-green/50"></i>Administrasi Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold text-sm mb-4 tracking-wide">Kontak</h4>
+                    <ul class="space-y-2.5">
+                        <li class="text-deep-green-300/60 text-sm flex items-start gap-2"><i class="fas fa-map-marker-alt text-leaf-green/60 mt-0.5 text-xs"></i>Parahyangan Residence A2-1, Jl. Letjen Mashudi, Kel. Kersanegara, Kec. Cibeureum, Kota. Tasikmalaya, Jawa barat</li>
+                        <li class="text-deep-green-300/60 text-sm flex items-center gap-2"><i class="fas fa-phone text-leaf-green/60 text-xs"></i>+62 82126584720</li>
+                        <li class="text-deep-green-300/60 text-sm flex items-center gap-2"><i class="fas fa-envelope text-leaf-green/60 text-xs"></i>denjasskasejahteramandiri@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-deep-green-500 text-xs font-light"> PT. Denjasska Sejahtera Mandiri. All rights reserved.</p>
+                <p class="text-deep-green-600 text-xs font-light">Designed with IT SUPPORT PT. DSM.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 z-50 transform translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
+        <div class="glass-card rounded-2xl px-6 py-4 border border-leaf-green/20 shadow-2xl flex items-center gap-4">
+            <div class="w-10 h-10 rounded-xl bg-leaf-green/20 flex items-center justify-center">
+                <i class="fas fa-check text-leaf-green"></i>
+            </div>
+            <div>
+                <div class="text-white font-semibold text-sm">Berhasil!</div>
+                <div class="text-deep-green-300 text-xs" id="toastMsg">Lamaran Anda telah terkirim.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 800);
+        });
+
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scrollProgress').style.width = progress + '%';
+        });
+
+        // Navigation scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                nav.classList.add('glass');
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                nav.classList.remove('glass');
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Mobile Menu
+        const menuToggle = document.getElementById('menuToggle');
+        const mobilePanel = document.getElementById('mobilePanel');
+        const bar1 = document.getElementById('bar1');
+        const bar2 = document.getElementById('bar2');
+        const bar3 = document.getElementById('bar3');
+        let menuOpen = false;
+
+        menuToggle.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobilePanel.classList.toggle('open', menuOpen);
+            if (menuOpen) {
+                bar1.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                bar2.style.opacity = '0';
+                bar3.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+            } else {
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuOpen = false;
+                mobilePanel.classList.remove('open');
+                bar1.style.transform = 'none';
+                bar2.style.opacity = '1';
+                bar3.style.transform = 'none';
+            });
+        });
+
+        // Services Accordion
+        const servicesAccordionBtn = document.getElementById('servicesAccordionBtn');
+        const servicesAccordion = document.getElementById('servicesAccordion');
+        const servicesChevron = document.getElementById('servicesChevron');
+        let accordionOpen = false;
+
+        servicesAccordionBtn.addEventListener('click', () => {
+            accordionOpen = !accordionOpen;
+            servicesAccordion.classList.toggle('open', accordionOpen);
+            servicesChevron.style.transform = accordionOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+
+        // Intersection Observer for reveal animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Handle stagger children
+                    if (entry.target.classList.contains('stagger-children')) {
+                        entry.target.classList.add('visible');
+                    }
+                    
+                    // Handle image reveal
+                    if (entry.target.classList.contains('img-reveal')) {
+                        entry.target.classList.add('revealed');
+                    }
+                    
+                    // Handle counters
+                    if (entry.target.querySelectorAll('.counter-value').length > 0) {
+                        entry.target.querySelectorAll('.counter-value').forEach(counter => {
+                            const target = parseInt(counter.dataset.target);
+                            animateCounter(counter, target);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children, .img-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 40;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 40);
+        }
+
+        // File Upload
+        function updateFileName() {
+            const input = document.getElementById('cvUpload');
+            const label = document.getElementById('fileLabel');
+            if (input.files && input.files[0]) {
+                label.textContent = input.files[0].name;
+                label.classList.add('text-leaf-green');
+            }
+        }
+
+        // Form Submission
+        applyForm.addEventListener('submit', function(e) {
+
+    showToast('Lamaran berhasil dikirim');
+});
+            showToast('Lamaran Anda berhasil dikirim! Tim HR kami akan menghubungi Anda segera.');
+            e.target.reset();
+            document.getElementById('fileLabel').textContent = 'Klik untuk upload CV (PDF, DOC, DOCX)';
+            document.getElementById('fileLabel').classList.remove('text-leaf-green');
+        });
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.style.transform = 'translateY(0)';
+            toast.style.opacity = '1';
+            setTimeout(() => {
+                toast.style.transform = 'translateY(20px)';
+                toast.style.opacity = '0';
+            }, 4000);
+        }
+
+        // Particle Canvas
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(0, 200, 83, ${this.opacity})`;
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(0, 200, 83, ${0.08 * (1 - dist / 120)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            document.querySelectorAll('.parallax-bg').forEach(el => {
+                el.style.transform = `translateY(${scrolled * 0.15}px)`;
+            });
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursorFollower');
+        let cursorX = 0, cursorY = 0;
+        let currentX = 0, currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+        });
+
+        function updateCursor() {
+            currentX += (cursorX - currentX) * 0.15;
+            currentY += (cursorY - currentY) * 0.15;
+            cursor.style.left = currentX + 'px';
+            cursor.style.top = currentY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+        updateCursor();
+
+        // Cursor hover effect
+        document.querySelectorAll('a, button, .magnetic-btn').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+        });
+
+        // Magnetic Button Effect
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+    </script>
+
+</body>
